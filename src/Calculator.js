@@ -1,69 +1,96 @@
-import { useState } from "react";
-import Image from "./image/red-hair-girl.png";
+import { useEffect, useState } from "react";
+// import Image from "./image/red-hair-girl.png";
 
 const Calculator = () => {
-    //useState varibles and functions.
-    const [val, setval] = useState("");
-    const [result, setResult] = useState("");
+  //useState varibles and functions.
+  const [val, setval] = useState("");
 
-    const createDigits = () => {
-        let digits = [];
+  const operations = ["*", "/", "+", "-", "."];
 
-        for (let i = 1; i <= 9; i++) {
-            digits.push(<button key={i}>{i}</button>);
-        }
-        return digits;
-    };
+  const createDigits = () => {
+    // digits set to an empty array for storing our elements
+    let digits = [];
 
-    const ops = ["*", "/", "+", "-", "=", "."];
+    // looping throught and pushing the values to the array
+    for (let i = 1; i < 10; i++) {
+      digits.push(
+        <button key={i} onClick={() => handleDial(i.toString())}>
+          {i}
+        </button>
+      );
+    }
 
-    const handleCalculation = (e) => {
-        // if (ops.includes(e) && )
-    };
+    return digits;
+  };
 
-    const handleDelete = () => {
-        // setResult(cal.slice(0, -1));
-    };
+  const handleDial = (e) => {
+    if (
+      (operations.includes(e) && val === "") ||
+      (operations.includes(e) && operations.includes(val.slice(-1)))
+    ) {
+      return;
+    }
+    setval(val + e);
+  };
 
-    const handleOperation = () => {};
+  const handleDelete = () => {
+    //Thanks to GreeksForGreeks with explaining slice mroe in depht
+    setval(val.slice(0, -1));
+  };
 
-    return (
-        <>
-            <div
-                style={{
-                    textAlign: "Center",
-                    color: "#59C3C3",
-                    fontWeight: "bold",
-                    fontSize: "16px",
-                    marginBottom: "20px",
-                }}
-            >
-                <h1>Kennesue Calculator</h1>
-            </div>
-            <div className="calculator">
-                <div className="screen">
-                    <span>(0)</span> {result}
-                </div>
+  const handleClear = () => {
+    setval("");
+  };
 
-                <div className="operators">
-                    <button>AC</button>
-                    <button>/</button>
-                    <button>x</button>
-                    <button>-</button>
-                    <button>+</button>
+  useEffect(() => {
+    setTimeout(() => {
+      handleClear();
+    }, 50000);
+  });
 
-                    <button>DEL</button>
-                </div>
+  const handleCalculate = () => {
+    setval(eval(val.toString()));
+  };
 
-                <div className="digits">
-                    {createDigits()}
-                    <button>0</button>
-                    <button>.</button>
-                    <button>=</button>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div
+        style={{
+          textAlign: "Center",
+          color: "#fff",
+          fontWeight: "bold",
+          fontSize: "16px",
+          marginBottom: "20px",
+        }}
+      >
+        <h1>Kennesue Calculator</h1>
+      </div>
+      <div className="calculator">
+        <div className="screen">
+          {/* if the val is empty it would be set to default 0 */}
+          {val || "0"}
+        </div>
+
+        <div className="operators">
+          <button onClick={() => handleClear("")}>AC</button>
+          <button onClick={() => handleDial("/")}>/</button>
+          <button onClick={() => handleDial("x")}>x</button>
+          <button onClick={() => handleDial("-")}>-</button>
+          <button onClick={() => handleDial("+")}>+</button>
+
+          <button onClick={() => handleDelete("")}>DEL</button>
+        </div>
+
+        <div className="digits">
+          {/* invoke our function in our template */}
+          {createDigits()}
+          <button onClick={() => handleDial("0")}>0</button>
+          <button onClick={() => handleDial(".")}>.</button>
+          <button onClick={() => handleCalculate("")}>=</button>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Calculator;
