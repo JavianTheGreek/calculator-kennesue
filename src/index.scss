@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+// Gobal Variables
+$clr-btn: #52489C;
+$clr-primary: #4062BB;
+$clr-secondary: #59C3C3;
+$clr-text: #fff;
+
+/* base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand";
+}
+
+body {
+  background-color:#fafafa;
+}
+
+.App {
+	display: flex;
+  flex-direction: column;
+  padding: 20px;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+
+  .calculator {
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 20px;
+
+    .screen {
+      font-size: 24px;
+      background-color: $clr-primary;
+      padding: 14px;
+      text-align: right;
+
+       span {
+        font-size: 12px;
+        color: #888;
+      }
+    }
+  }
+}
+
+.operators {
+  display: flex;
+
+  button {
+    flex: 1 1 0%;
+    background-color: $clr-secondary;
+    font-weight: 700;
+  
+    &button:hover {
+      color: $clr-primary;
+    }
+  }
+}
+
+button {
+  color: $clr-text;
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  padding: 30px;
+
+  &:hover {
+    opacity: 0.9;
+    color: $clr-secondary;
+  }
+
+  &:hover:last-child {
+    color: $clr-primary;
+  }
+}
+
+
+.digits {
+  display: flex;
+  flex-wrap: wrap;
+
+  button {
+    flex: 1 1 33.3%;
+    background-color: $clr-primary;
+  }
+
+  button:last-child {
+    background-color: $clr-secondary;
+  }
+  
+}
+
+
+
