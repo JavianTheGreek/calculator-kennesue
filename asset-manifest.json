@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/calculator-kennesue/static/css/main.d55481d1.css",
+    "main.js": "/calculator-kennesue/static/js/main.c5b7e0cf.js",
+    "index.html": "/calculator-kennesue/index.html",
+    "main.d55481d1.css.map": "/calculator-kennesue/static/css/main.d55481d1.css.map",
+    "main.c5b7e0cf.js.map": "/calculator-kennesue/static/js/main.c5b7e0cf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d55481d1.css",
+    "static/js/main.c5b7e0cf.js"
+  ]
+}
